@@ -1,13 +1,18 @@
 package com.example.wbdvsp21proprentalserverjava.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
+@SecondaryTable(name = "auth", pkJoinColumns = @PrimaryKeyJoinColumn(name = "USER_ID"))
 public class User {
 
     @Id
@@ -18,6 +23,12 @@ public class User {
     private String lastName;
     private String phone;
     private int userType;
+
+    @Column(name = "USERNAME", table = "auth")
+    String username;
+
+    @Column(name = "PWD", table = "auth")
+    String password;
 
     public User() {}
 
