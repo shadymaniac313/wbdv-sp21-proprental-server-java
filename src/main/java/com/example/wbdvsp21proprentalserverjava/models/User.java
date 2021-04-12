@@ -19,6 +19,8 @@ public class User {
     private String phone;
     private int userType;
 
+    public User() {}
+
     public User(String firstName, String lastName, String phone, int userType) {
         this.firstName = firstName;
         this.lastName = lastName;
