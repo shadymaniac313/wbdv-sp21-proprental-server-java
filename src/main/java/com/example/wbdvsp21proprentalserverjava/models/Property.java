@@ -26,7 +26,7 @@ public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private int propertyId;
+    private int id;
     private String propertySource;
     @OneToOne(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
@@ -56,5 +56,14 @@ public class Property {
     public void setPropertySource(String propertySource) {
         this.propertySource = propertySource;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
 }
