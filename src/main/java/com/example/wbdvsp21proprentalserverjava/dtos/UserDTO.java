@@ -7,7 +7,7 @@ public class UserDTO {
     private String phone;
     private int userType;
     private String username;
-    private String password;
+    private String pwd;
 
     public String getFirstName() {
         return firstName;
@@ -29,17 +29,17 @@ public class UserDTO {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPwd() {
+        return pwd;
     }
 
     public UserDTO(String firstName, String lastName, String phone, int userType,
-      String username, String password) {
+      String username, String pwd) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.userType = userType;
         this.username = username;
-        this.password = password;
+        this.pwd = pwd;
     }
 }

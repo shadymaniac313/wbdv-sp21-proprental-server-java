@@ -2,6 +2,7 @@ package com.example.wbdvsp21proprentalserverjava.controllers;
 
 import com.example.wbdvsp21proprentalserverjava.dtos.UserDTO;
 import com.example.wbdvsp21proprentalserverjava.models.User;
+import com.example.wbdvsp21proprentalserverjava.models.UserAuth;
 import com.example.wbdvsp21proprentalserverjava.services.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,12 @@ public class UserController {
 
     @PostMapping("/api/users")
     public User createUser(@RequestBody UserDTO userDTO) {
-        return service.createUser(new User(userDTO.getFirstName(), userDTO.getLastName(),
-          userDTO.getPhone(), userDTO.getUserType()));
+        User userToBeCreated = new User(userDTO.getFirstName(), userDTO.getLastName(),
+          userDTO.getPhone(), userDTO.getUserType());
+        UserAuth authToBeCreated = new UserAuth(userDTO.getUsername(), userDTO.getPwd());
+        userToBeCreated.setUserAuth(authToBeCreated);
+        authToBeCreated.setUser(userToBeCreated);
+        return service.createUser(userToBeCreated);
     }
 
 }
