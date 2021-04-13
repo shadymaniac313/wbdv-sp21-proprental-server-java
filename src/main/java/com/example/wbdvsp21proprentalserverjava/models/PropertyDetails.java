@@ -1,7 +1,10 @@
 package com.example.wbdvsp21proprentalserverjava.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
@@ -18,9 +21,10 @@ public class PropertyDetails {
     private String city;
     private String state;
     private String zipcode;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @MapsId
     @JoinColumn(name = "PROPERTY_ID")
+    @JsonBackReference
     private Property property;
 
     public PropertyDetails(){}
