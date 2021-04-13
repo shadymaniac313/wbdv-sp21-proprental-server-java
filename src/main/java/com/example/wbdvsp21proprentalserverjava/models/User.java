@@ -1,9 +1,11 @@
 package com.example.wbdvsp21proprentalserverjava.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,20 +21,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private int userId;
-
     private String firstName;
     private String lastName;
     private String phone;
     private int userType;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    @JsonManagedReference
+    private UserAuth userAuth;
 
     public UserAuth getUserAuth() {
         return userAuth;
     }
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    @JsonBackReference
-    private UserAuth userAuth;
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
