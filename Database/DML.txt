@@ -1,51 +1,51 @@
 start transaction;
-insert into `PROPRENTAL`.`USERS` (`FIRST_NAME`, `LAST_NAME`, `PHONE`, `USER_TYPE`) values ('Neel', 'Deshpande', '6465123314', 1);
-insert into `PROPRENTAL`.`USERS` (`FIRST_NAME`, `LAST_NAME`, `PHONE`, `USER_TYPE`) values ('Shubham', 'Kurkure', '6571120911', 1);
-insert into `PROPRENTAL`.`USERS` (`FIRST_NAME`, `LAST_NAME`, `PHONE`, `USER_TYPE`) values ('Prakash', 'Kumar', '8571015156', 1);
-insert into `PROPRENTAL`.`USERS` (`FIRST_NAME`, `LAST_NAME`, `PHONE`, `USER_TYPE`) values ('Rushi', 'Chaudhari', '8579001221', 1);
+insert into `PROPRENTAL`.`users` (`FIRST_NAME`, `LAST_NAME`, `PHONE`, `USER_TYPE`) values ('Neel', 'Deshpande', '6465123314', 1);
+insert into `PROPRENTAL`.`users` (`FIRST_NAME`, `LAST_NAME`, `PHONE`, `USER_TYPE`) values ('Shubham', 'Kurkure', '6571120911', 1);
+insert into `PROPRENTAL`.`users` (`FIRST_NAME`, `LAST_NAME`, `PHONE`, `USER_TYPE`) values ('Prakash', 'Kumar', '8571015156', 1);
+insert into `PROPRENTAL`.`users` (`FIRST_NAME`, `LAST_NAME`, `PHONE`, `USER_TYPE`) values ('Rushi', 'Chaudhari', '8579001221', 1);
 commit;
 
 start transaction;
-insert into `PROPRENTAL`.`AUTH` (`USER_ID`, `USERNAME`, `PWD`) values (1, 'neeld', 'password@123');
-insert into `PROPRENTAL`.`AUTH` (`USER_ID`, `USERNAME`, `PWD`) values (2, 'shubhamk', 'password@123');
-insert into `PROPRENTAL`.`AUTH` (`USER_ID`, `USERNAME`, `PWD`) values (3, 'prakashk', 'password@123');
-insert into `PROPRENTAL`.`AUTH` (`USER_ID`, `USERNAME`, `PWD`) values (4, 'rushic', 'password@123');
+insert into `PROPRENTAL`.`auth` (`USER_ID`, `USERNAME`, `PWD`) values (1, 'neeld', 'password@123');
+insert into `PROPRENTAL`.`auth` (`USER_ID`, `USERNAME`, `PWD`) values (2, 'shubhamk', 'password@123');
+insert into `PROPRENTAL`.`auth` (`USER_ID`, `USERNAME`, `PWD`) values (3, 'prakashk', 'password@123');
+insert into `PROPRENTAL`.`auth` (`USER_ID`, `USERNAME`, `PWD`) values (4, 'rushic', 'password@123');
 commit;
 
 start transaction;
-insert into `PROPRENTAL`.`PROPERTIES` (`PROPERTY_SOURCE`) values ('local');
-insert into `PROPRENTAL`.`PROPERTIES` (`PROPERTY_SOURCE`) values ('local');
-insert into `PROPRENTAL`.`PROPERTIES` (`PROPERTY_SOURCE`) values ('local');
+insert into `PROPRENTAL`.`properties` (`PROPERTY_SOURCE`) values ('local');
+insert into `PROPRENTAL`.`properties` (`PROPERTY_SOURCE`) values ('local');
+insert into `PROPRENTAL`.`properties` (`PROPERTY_SOURCE`) values ('local');
 commit;
 
 start transaction;
-insert into `PROPRENTAL`.`PROPERTY_DETAILS` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Boston', 'MA', '02120');
-insert into `PROPRENTAL`.`PROPERTY_DETAILS` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Compton', 'CA', '97171');
-insert into `PROPRENTAL`.`PROPERTY_DETAILS` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Jacksonville', 'NC', '61221');
+insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Boston', 'MA', '02120');
+insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Compton', 'CA', '97171');
+insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Jacksonville', 'NC', '61221');
 commit;
 
 start transaction;
-insert into `PROPRENTAL`.`AMENITIES` (`AMENITY_DESCRIPTION`) values ('Club House');
-insert into `PROPRENTAL`.`AMENITIES` (`AMENITY_DESCRIPTION`) values ('Pool');
-insert into `PROPRENTAL`.`AMENITIES` (`AMENITY_DESCRIPTION`) values ('Gym');
+insert into `PROPRENTAL`.`amenities` (`AMENITY_DESCRIPTION`) values ('Club House');
+insert into `PROPRENTAL`.`amenities` (`AMENITY_DESCRIPTION`) values ('Pool');
+insert into `PROPRENTAL`.`amenities` (`AMENITY_DESCRIPTION`) values ('Gym');
 commit;
 
 start transaction;
-insert into `PROPRENTAL`.`PROPERTY_AMENITY_LOOKUP` (`PROPERTY_ID`, `AMENITY_ID`) values (1, 1);
-insert into `PROPRENTAL`.`PROPERTY_AMENITY_LOOKUP` (`PROPERTY_ID`, `AMENITY_ID`) values (1, 2);
-insert into `PROPRENTAL`.`PROPERTY_AMENITY_LOOKUP` (`PROPERTY_ID`, `AMENITY_ID`) values (2, 1);
-insert into `PROPRENTAL`.`PROPERTY_AMENITY_LOOKUP` (`PROPERTY_ID`, `AMENITY_ID`) values (2, 2);
-insert into `PROPRENTAL`.`PROPERTY_AMENITY_LOOKUP` (`PROPERTY_ID`, `AMENITY_ID`) values (2, 3);
+insert into `PROPRENTAL`.`property_amenity_lookup` (`PROPERTY_ID`, `AMENITY_ID`) values (1, 1);
+insert into `PROPRENTAL`.`property_amenity_lookup` (`PROPERTY_ID`, `AMENITY_ID`) values (1, 2);
+insert into `PROPRENTAL`.`property_amenity_lookup` (`PROPERTY_ID`, `AMENITY_ID`) values (2, 1);
+insert into `PROPRENTAL`.`property_amenity_lookup` (`PROPERTY_ID`, `AMENITY_ID`) values (2, 2);
+insert into `PROPRENTAL`.`property_amenity_lookup` (`PROPERTY_ID`, `AMENITY_ID`) values (2, 3);
 commit;
 
 start transaction;
-insert into `PROPRENTAL`.`LISTINGS` (`PROPERTY_ID`, `SALE_TYPE`, `RATE`, `AGENT_ID`) values (1, 'Outright', 2000, 1);
-insert into `PROPRENTAL`.`LISTINGS` (`PROPERTY_ID`, `SALE_TYPE`, `RATE`, `AGENT_ID`) values (2, 'Rent', 1000, 2);
-insert into `PROPRENTAL`.`LISTINGS` (`PROPERTY_ID`, `SALE_TYPE`, `RATE`, `AGENT_ID`) values (3, 'Outright', 700000, 3);
+insert into `PROPRENTAL`.`listings` (`PROPERTY_ID`, `SALE_TYPE`, `RATE`, `AGENT_ID`) values (1, 'Outright', 2000, 1);
+insert into `PROPRENTAL`.`listings` (`PROPERTY_ID`, `SALE_TYPE`, `RATE`, `AGENT_ID`) values (2, 'Rent', 1000, 2);
+insert into `PROPRENTAL`.`listings` (`PROPERTY_ID`, `SALE_TYPE`, `RATE`, `AGENT_ID`) values (3, 'Outright', 700000, 3);
 commit;
 
 start transaction;
-insert into `PROPRENTAL`.`USER_LISTING_LOOKUP` (`USER_ID`, `LISTING_ID`) values (3, 1);
-insert into `PROPRENTAL`.`USER_LISTING_LOOKUP` (`USER_ID`, `LISTING_ID`) values (4, 1);
-insert into `PROPRENTAL`.`USER_LISTING_LOOKUP` (`USER_ID`, `LISTING_ID`) values (2, 3);
+insert into `PROPRENTAL`.`user_listing_lookup` (`USER_ID`, `LISTING_ID`) values (3, 1);
+insert into `PROPRENTAL`.`user_listing_lookup` (`USER_ID`, `LISTING_ID`) values (4, 1);
+insert into `PROPRENTAL`.`user_listing_lookup` (`USER_ID`, `LISTING_ID`) values (2, 3);
 commit;

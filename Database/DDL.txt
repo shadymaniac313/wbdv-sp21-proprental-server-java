@@ -8,10 +8,10 @@ create schema PROPRENTAL;
 use PROPRENTAL;
 
 -- Drop the user table if exists
-drop table if exists `USERS`;
+drop table if exists `users`;
 
 -- Create the user table
-create table `USERS`
+create table `users`
 (
     ID    int         not null auto_increment,
     FIRST_NAME varchar(50) not null,
@@ -22,24 +22,24 @@ create table `USERS`
 );
 
 -- Drop the auth table if exists
-drop table if exists `AUTH`;
+drop table if exists `auth`;
 
 -- Create the auth table
-create table `AUTH`
+create table `auth`
 (
     USER_ID  int          not null,
     USERNAME varchar(50)  not null unique,
     PWD      varchar(100) not null,
     constraint USER_ID_FK foreign key (USER_ID)
-        references `USERS` (ID)
+        references `users` (ID)
         on delete cascade on update cascade
 );
 
 -- Drop the property table if exists
-drop table if exists `PROPERTIES`;
+drop table if exists `properties`;
 
 -- Create the property table
-create table `PROPERTIES`
+create table `properties`
 (
     ID     int         not null auto_increment,
     PROPERTY_SOURCE varchar(50) not null,
@@ -47,10 +47,10 @@ create table `PROPERTIES`
 );
 
 -- Drop the listing table if exists
-drop table if exists `LISTINGS`;
+drop table if exists `listings`;
 
 -- Create the listing table
-create table `LISTINGS`
+create table `listings`
 (
     ID  int         not null auto_increment,
     PROPERTY_ID int         not null,
@@ -58,32 +58,32 @@ create table `LISTINGS`
     RATE        double,
     AGENT_ID    int,
     constraint PROPERTY_LISTING_FK foreign key (PROPERTY_ID)
-        references `PROPERTIES` (ID)
+        references `properties` (ID)
         on delete cascade on update cascade,
     primary key (ID)
 );
 
 -- Drop the user listing lookup table if exists
-drop table if exists `USER_LISTING_LOOKUP`;
+drop table if exists `user_listing_lookup`;
 
 -- Create the user listing lookup table
-create table `USER_LISTING_LOOKUP`
+create table `user_listing_lookup`
 (
     USER_ID    int not null,
     LISTING_ID int not null,
     constraint USER_LISTING_FK foreign key (USER_ID)
-        references `USERS` (ID)
+        references `users` (ID)
         on delete cascade on update cascade,
     constraint LISTING_LISTING_FK foreign key (LISTING_ID)
-        references `LISTINGS` (ID)
+        references `listings` (ID)
         on delete cascade on update cascade
 );
 
 -- Drop the property details table if exists
-drop table if exists `PROPERTY_DETAILS`;
+drop table if exists `property_details`;
 
 -- Create the property details table
-create table `PROPERTY_DETAILS`
+create table `property_details`
 (
     ID int not null auto_increment,
     PROPERTY_ID       int not null,
@@ -92,15 +92,15 @@ create table `PROPERTY_DETAILS`
     ZIPCODE           varchar(10),
     primary key (ID),
     constraint DETAIL_PROPERTY_FK foreign key (PROPERTY_ID)
-        references `PROPERTIES` (ID)
+        references `properties` (ID)
         on delete cascade on update cascade
 );
 
 -- Delete the amenity table if exists
-drop table if exists `AMENITIES`;
+drop table if exists `amenities`;
 
 -- Create the amenity table
-create table `AMENITIES`
+create table `amenities`
 (
     ID          int not null auto_increment,
     AMENITY_DESCRIPTION varchar(100),
@@ -108,17 +108,17 @@ create table `AMENITIES`
 );
 
 -- Delete the property amenity lookup table if exists
-drop table if exists `PROPETY_AMENITY_LOOKUP`;
+drop table if exists `property_amenity_lookup`;
 
 -- Create the property amenity lookup table
-create table `PROPERTY_AMENITY_LOOKUP`
+create table `property_amenity_lookup`
 (
     PROPERTY_ID int not null,
     AMENITY_ID  int not null,
     constraint PROPERTY_AMENITY_FK foreign key (PROPERTY_ID)
-        references `PROPERTIES` (ID)
+        references `properties` (ID)
         on delete cascade on update cascade,
     constraint AMENITY_AMENITY_FK foreign key (AMENITY_ID)
-        references `AMENITIES` (ID)
+        references `amenities` (ID)
         on delete cascade on update cascade
 );
