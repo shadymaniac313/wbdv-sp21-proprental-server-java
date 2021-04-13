@@ -9,9 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 
 @Entity
 @Table(name = "users")
@@ -27,13 +25,34 @@ public class User {
     private String phone;
     private int userType;
 
-    public void setUserAuth(UserAuth userAuth) {
-        this.userAuth = userAuth;
+    public UserAuth getUserAuth() {
+        return userAuth;
     }
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
+    @JsonBackReference
     private UserAuth userAuth;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
+    public void setUserAuth(UserAuth userAuth) {
+        this.userAuth = userAuth;
+    }
 
 
     public User() {}

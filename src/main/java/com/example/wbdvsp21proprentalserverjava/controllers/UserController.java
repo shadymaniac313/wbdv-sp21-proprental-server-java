@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,7 @@ public class UserController {
 
     @GetMapping("/all")
     public List<User> findAllUsers() {
-        return service.fetchAllUsers();
+        return this.service.fetchAllUsers();
     }
 
     @PostMapping("/create")
@@ -39,14 +40,20 @@ public class UserController {
         UserAuth authToBeCreated = new UserAuth(userDTO.getUsername(), userDTO.getPwd());
         userToBeCreated.setUserAuth(authToBeCreated);
         authToBeCreated.setUser(userToBeCreated);
-        return service.createUser(userToBeCreated);
+        return this.service.createUser(userToBeCreated);
+    }
+
+    @PutMapping(value = "/update/{userId}")
+    public User updateUser(@RequestBody UserDTO user, @PathVariable int userId) {
+        logger.info("Attempting to update user details");
+        return this.service.updateUser(user, userId);
     }
 
     @DeleteMapping("/{userId}")
     public int deleteUser(@PathVariable int userId) {
         try {
             logger.info("Attempting to delete user {}", userId);
-            service.deleteUser(userId);
+            this.service.deleteUser(userId);
         } catch (Exception e) {
             logger.error("User {} being deleted does not exist", userId);
             return 0;
