@@ -15,4 +15,8 @@ public class UserService {
     public List<User> fetchAllUsers() {
         return (List<User>) repository.findAll();
     }
+
+    public User createUser(User user) {
+        return repository.save(user);
+    }
 }
