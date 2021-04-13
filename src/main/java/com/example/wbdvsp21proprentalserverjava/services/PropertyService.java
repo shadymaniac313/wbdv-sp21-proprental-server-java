@@ -16,4 +16,8 @@ public class PropertyService {
         return (List<Property>) this.repository.findAll();
     }
 
+    public List<Property> fetchPropertiesByState(String state) {
+        return (List<Property>) this.repository.findPropertiesByState(state);
+    }
+
 }

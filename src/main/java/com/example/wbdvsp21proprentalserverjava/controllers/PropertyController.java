@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,11 @@ public class PropertyController {
     @GetMapping("/all")
     public List<Property> findAllProperties() {
         return service.fetchAllProperties();
+    }
+
+    @GetMapping("/state/{state}")
+    public List<Property> findPropertiesByState(@PathVariable String state) {
+        return this.service.fetchPropertiesByState(state);
     }
 
 }
