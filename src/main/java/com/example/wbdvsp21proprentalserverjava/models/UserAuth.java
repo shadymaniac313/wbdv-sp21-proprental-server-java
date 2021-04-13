@@ -21,6 +21,9 @@ public class UserAuth {
     private String username;
     private String pwd;
 
+    public UserAuth() {
+    }
+
     public UserAuth(String username, String pwd) {
         this.username = username;
         this.pwd = pwd;
