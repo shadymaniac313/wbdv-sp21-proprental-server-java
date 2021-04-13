@@ -31,4 +31,14 @@ public class PropertyController {
         return this.service.fetchPropertiesByState(state);
     }
 
+    @GetMapping("/city/{city}")
+    public List<Property> findPropertiesByCity(@PathVariable String city) {
+        return this.service.fetchPropertiesByCity(city);
+    }
+
+    @GetMapping("/source/{source}")
+    public List<Property> findPropertiesBySource(@PathVariable String source) {
+        return this.service.fetchPropertiesBySource(source);
+    }
+
 }
