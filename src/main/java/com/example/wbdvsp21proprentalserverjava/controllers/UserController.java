@@ -5,7 +5,6 @@ import com.example.wbdvsp21proprentalserverjava.models.User;
 import com.example.wbdvsp21proprentalserverjava.models.UserAuth;
 import com.example.wbdvsp21proprentalserverjava.services.UserService;
 import java.util.List;
-import javax.xml.ws.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

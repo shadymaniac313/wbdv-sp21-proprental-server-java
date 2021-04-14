@@ -1,15 +1,12 @@
 package com.example.wbdvsp21proprentalserverjava.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -33,6 +30,21 @@ public class User {
     @PrimaryKeyJoinColumn
     @JsonBackReference
     private UserAuth userAuth;
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "user_listing_lookup",
+            joinColumns = {@JoinColumn(name = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "LISTING_ID")}
+    )
+    @JsonManagedReference
+    @Fetch(FetchMode.JOIN)
+    private Set<Listing> listings;
+
+
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -83,6 +95,19 @@ public class User {
     public int getUserType() {
         return userType;
     }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Set<Listing> getListings() {
+        return listings;
+    }
+
+    public void setListings(Set<Listing> listings) {
+        this.listings = listings;
+    }
+
 
     @Override
     public String toString() {
