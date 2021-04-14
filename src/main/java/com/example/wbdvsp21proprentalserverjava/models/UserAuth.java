@@ -1,7 +1,11 @@
 package com.example.wbdvsp21proprentalserverjava.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,9 +21,14 @@ public class UserAuth {
     @Id
     @Column(name = "USER_ID")
     private int userId;
-
     private String username;
     private String pwd;
+    @OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+    @MapsId
+    @JoinColumn(name = "USER_ID")
+    @JsonBackReference
+    private User user;
+
 
     public UserAuth() {
     }
@@ -28,11 +37,6 @@ public class UserAuth {
         this.username = username;
         this.pwd = pwd;
     }
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "USER_ID")
-    private User user;
 
     public int getUserId() {
         return userId;

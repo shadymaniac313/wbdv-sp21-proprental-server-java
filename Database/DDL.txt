@@ -85,12 +85,10 @@ drop table if exists `property_details`;
 -- Create the property details table
 create table `property_details`
 (
-    ID int not null auto_increment,
     PROPERTY_ID       int not null,
     CITY              varchar(50),
     STATE             varchar(50),
-    ZIPCODE           varchar(10),
-    primary key (ID),
+    ZIPCODE           varchar(10)
     constraint DETAIL_PROPERTY_FK foreign key (PROPERTY_ID)
         references `properties` (ID)
         on delete cascade on update cascade

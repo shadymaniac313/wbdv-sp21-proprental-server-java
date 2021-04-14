@@ -2,11 +2,23 @@ package com.example.wbdvsp21proprentalserverjava.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "USERS")
@@ -16,19 +28,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private int userId;
-
     private String firstName;
     private String lastName;
     private String phone;
     private int userType;
 
-    public UserAuth getUserAuth() {
-        return userAuth;
-    }
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
-    @JsonBackReference
+    @JsonManagedReference
     private UserAuth userAuth;
 
     @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
@@ -99,6 +106,9 @@ public class User {
         this.listings = listings;
     }
 
+    public UserAuth getUserAuth() {
+        return userAuth;
+    }
 
     @Override
     public String toString() {

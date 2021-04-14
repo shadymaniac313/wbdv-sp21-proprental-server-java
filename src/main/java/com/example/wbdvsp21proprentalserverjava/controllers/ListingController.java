@@ -52,5 +52,8 @@ public class ListingController {
         }
         return updatedUsers;
     }
-
+    @GetMapping("/{id}")
+    public Listing findListingForId(@PathVariable int id){
+        return service.fetchListingById(id);
+    }
 }

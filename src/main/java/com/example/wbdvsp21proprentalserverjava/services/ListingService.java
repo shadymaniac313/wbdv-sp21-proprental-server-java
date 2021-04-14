@@ -13,7 +13,7 @@ public class ListingService {
     @Autowired
     private ListingRepository repository;
 
-    public Listing findListingById(int listingId){
+    public Listing fetchListingById(int listingId){
         return repository.findById(listingId).get();
     }
     public List<Listing> fetchAllListings(){
