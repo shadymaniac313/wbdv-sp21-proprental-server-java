@@ -1,12 +1,9 @@
 package com.example.wbdvsp21proprentalserverjava.services;
 
-import com.example.wbdvsp21proprentalserverjava.dtos.PropertyDTO;
-import com.example.wbdvsp21proprentalserverjava.models.Amenity;
 import com.example.wbdvsp21proprentalserverjava.models.Property;
-import com.example.wbdvsp21proprentalserverjava.models.PropertyDetails;
 import com.example.wbdvsp21proprentalserverjava.repositiories.PropertyRepository;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +15,10 @@ public class PropertyService {
 
     public List<Property> fetchAllProperties() {
         return (List<Property>) this.repository.findAll();
+    }
+
+    public Optional<Property> fetchPropertyById(int propertyId) {
+        return this.repository.findById(propertyId);
     }
 
     public List<Property> fetchPropertiesByState(String state) {

@@ -8,6 +8,8 @@ import com.example.wbdvsp21proprentalserverjava.services.AmenityService;
 import com.example.wbdvsp21proprentalserverjava.services.PropertyService;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,16 +63,38 @@ public class PropertyController {
           .build();
         embeddedDetails.setProperty(propertyToBeAdded);
         propertyToBeAdded.setPropertyDetails(embeddedDetails);
-        HashSet<Amenity> embeddedAmenities = new HashSet<>();
-        String[] amenityIds = propertyDTO.getAmenityIds().split(",");
-        for (String amenityId : amenityIds) {
+        Set<Amenity> embeddedAmenities = performAmenityUpdates(propertyDTO.getAmenityIds());
+        propertyToBeAdded.setAmenities(embeddedAmenities);
+        return this.service.addProperty(propertyToBeAdded);
+    }
+
+    @PutMapping("/update/{propertyId}")
+    public int updateProperty(@PathVariable int propertyId,
+      @RequestBody PropertyDTO updatedProperty) {
+        Optional<Property> propertyToBeUpdated = this.service.fetchPropertyById(propertyId);
+        if (propertyToBeUpdated.isPresent()) {
+            Property existingProperty = propertyToBeUpdated.get();
+            existingProperty.setPropertySource(updatedProperty.getSource());
+            existingProperty.getPropertyDetails().setCity(updatedProperty.getCity());
+            existingProperty.getPropertyDetails().setState(updatedProperty.getState());
+            existingProperty.getPropertyDetails().setZipcode(updatedProperty.getZipcode());
+            Set<Amenity> updatedAmenities = performAmenityUpdates(updatedProperty.getAmenityIds());
+            existingProperty.setAmenities(updatedAmenities);
+            this.service.addProperty(existingProperty);
+            return 1;
+        }
+        return 0;
+    }
+
+    private Set<Amenity> performAmenityUpdates(String amenityIds) {
+        HashSet<Amenity> updatedAmenities = new HashSet<>();
+        for (String amenityId : amenityIds.split(" ")) {
             if (this.amenityService.checkIfExists(Integer.parseInt(amenityId))) {
-                embeddedAmenities
+                updatedAmenities
                   .add(this.amenityService.findAmenityById(Integer.parseInt(amenityId)));
             }
         }
-        propertyToBeAdded.setAmenities(embeddedAmenities);
-        return this.service.addProperty(propertyToBeAdded);
+        return updatedAmenities;
     }
 
 }
