@@ -88,7 +88,7 @@ create table `property_details`
     PROPERTY_ID       int not null,
     CITY              varchar(50),
     STATE             varchar(50),
-    ZIPCODE           varchar(10)
+    ZIPCODE           varchar(10),
     constraint DETAIL_PROPERTY_FK foreign key (PROPERTY_ID)
         references `properties` (ID)
         on delete cascade on update cascade
