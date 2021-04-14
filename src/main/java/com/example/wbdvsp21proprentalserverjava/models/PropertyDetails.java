@@ -27,7 +27,11 @@ public class PropertyDetails {
     @JsonBackReference
     private Property property;
 
-    public PropertyDetails(){}
+    public PropertyDetails() {
+        this.setCity("");
+        this.setState("");
+        this.setZipcode("");
+    }
 
     public PropertyDetails(String city, String state, String zipcode) {
         this.city = city;
@@ -66,6 +70,36 @@ public class PropertyDetails {
     public void setProperty(
       Property property) {
         this.property = property;
+    }
+
+    public static PropertyDetailsBuilder getBuilder() {
+        return new PropertyDetailsBuilder();
+    }
+
+    public static class PropertyDetailsBuilder {
+
+        private String state;
+        private String city;
+        private String zipcode;
+
+        public PropertyDetailsBuilder setState(String state) {
+            this.state = state;
+            return this;
+        }
+
+        public PropertyDetailsBuilder setCity(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public PropertyDetailsBuilder setZipcode(String zipcode) {
+            this.zipcode = zipcode;
+            return this;
+        }
+
+        public PropertyDetails build() {
+            return new PropertyDetails(this.city, this.state, this.zipcode);
+        }
     }
 
 }

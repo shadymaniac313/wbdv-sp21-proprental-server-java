@@ -2,6 +2,7 @@ package com.example.wbdvsp21proprentalserverjava.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,6 +44,7 @@ public class Property {
     private Set<Amenity> amenities;
 
     public Property() {
+        this.setPropertySource("");
     }
 
     public Property(String propertySource) {
@@ -63,6 +65,24 @@ public class Property {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Set<Amenity> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(
+      Set<Amenity> amenities) {
+        this.amenities = amenities;
+    }
+
+    public PropertyDetails getPropertyDetails() {
+        return propertyDetails;
+    }
+
+    public void setPropertyDetails(
+      PropertyDetails propertyDetails) {
+        this.propertyDetails = propertyDetails;
     }
 
 
