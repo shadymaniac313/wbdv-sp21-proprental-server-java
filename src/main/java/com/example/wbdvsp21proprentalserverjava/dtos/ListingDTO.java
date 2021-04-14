@@ -1,7 +1,7 @@
 package com.example.wbdvsp21proprentalserverjava.dtos;
 
 public class ListingDTO {
-    private int userId;
+    private String userIds;
 
     private String firstName;
     private String lastName;
@@ -13,8 +13,8 @@ public class ListingDTO {
     private double rate;
     private int agentId;
 
-    public ListingDTO(int userId, String firstName, String lastName, String phone, int userType, int propertyId, String saleType, double rate, int agentId) {
-        this.userId = userId;
+    public ListingDTO(String userIds, String firstName, String lastName, String phone, int userType, int propertyId, String saleType, double rate, int agentId) {
+        this.userIds = userIds;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -25,8 +25,8 @@ public class ListingDTO {
         this.agentId = agentId;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getuserIds() {
+        return userIds;
     }
 
     public String getFirstName() {

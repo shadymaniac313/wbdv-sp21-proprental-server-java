@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public class ListingController {
 
     @Autowired
     ListingService service;
+    @Autowired
     UserService userService;
     private Logger logger = LoggerFactory.getLogger(ListingController.class);
 
@@ -31,14 +33,24 @@ public class ListingController {
     }
 
     @PostMapping("/create")
-    public User createListing(@RequestBody ListingDTO listingDTO) {
+    public Listing createListing(@RequestBody ListingDTO listingDTO) {
         Listing listingToBeCreated = new Listing(listingDTO.getPropertyId(), listingDTO.getSaleType(),
                 listingDTO.getRate(), listingDTO.getAgentId());
-        User oldUser = userService.fetchUserById(listingDTO.getUserId());
-        Set<Listing> m =(oldUser.getListings().add(listingToBeCreated));
-        oldUser.setListings(m);
-        listingToBeCreated.setUsers(oldUser);
+
+        Set<User> embeddedUsers = performUserUpdates(listingDTO.getuserIds());
+        listingToBeCreated.setUsers(embeddedUsers);
         return this.service.createListing(listingToBeCreated);
+    }
+
+    private Set<User> performUserUpdates(String listingIds) {
+        HashSet<User> updatedUsers = new HashSet<>();
+        for (String listingId : listingIds.split(" ")) {
+            if (this.service.checkIfExists(Integer.parseInt(listingId))) {
+                updatedUsers
+                        .add(this.userService.fetchUserById(Integer.parseInt(listingId)));
+            }
+        }
+        return updatedUsers;
     }
 
 }

@@ -22,4 +22,8 @@ public class ListingService {
     public  Listing createListing(Listing listing) {
         return repository.save(listing);
     }
+
+    public boolean checkIfExists(int listingId) {
+        return this.repository.findById(listingId).isPresent();
+    }
 }
