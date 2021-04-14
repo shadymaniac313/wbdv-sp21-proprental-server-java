@@ -19,9 +19,9 @@ insert into `PROPRENTAL`.`properties` (`PROPERTY_SOURCE`) values ('local');
 commit;
 
 start transaction;
-insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Boston', 'MA', '02120');
-insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (2, 'Compton', 'CA', '97171');
-insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (3, 'Jacksonville', 'NC', '61221');
+insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`, `BATH_COUNT`, `BED_COUNT`, `AREA_SQ_FT`) values (1, 'Boston', 'MA', '02120', 2, 3, 900.5);
+insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`, `BATH_COUNT`, `BED_COUNT`, `AREA_SQ_FT`) values (2, 'Compton', 'CA', '97171', 5, 8, 4574);
+insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`, `BATH_COUNT`, `BED_COUNT`, `AREA_SQ_FT`) values (3, 'Jacksonville', 'NC', '61221', 1, 1, 636.5);
 commit;
 
 start transaction;
