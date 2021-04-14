@@ -1,6 +1,8 @@
 package com.example.wbdvsp21proprentalserverjava.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -19,8 +21,14 @@ public class Listing {
     private int agentId;
 
 
-    @ManyToMany(targetEntity = User.class, mappedBy = "listings", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "user_listing_lookup",
+            joinColumns = {@JoinColumn(name = "LISTING_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "USER_ID")}
+    )
     @JsonBackReference
+    @Fetch(FetchMode.JOIN)
     private Set<User> users;
 
 

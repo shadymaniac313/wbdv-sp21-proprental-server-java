@@ -31,14 +31,8 @@ public class User {
     @JsonBackReference
     private UserAuth userAuth;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_listing_lookup",
-            joinColumns = {@JoinColumn(name = "USER_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "LISTING_ID")}
-    )
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private Set<Listing> listings;
 
 
