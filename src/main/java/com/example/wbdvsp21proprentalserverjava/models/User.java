@@ -31,10 +31,7 @@ public class User {
     @JsonBackReference
     private UserAuth userAuth;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany
     @JoinTable(
             name = "user_listing_lookup",
             joinColumns = {@JoinColumn(name = "USER_ID")},
