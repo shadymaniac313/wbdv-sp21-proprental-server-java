@@ -37,4 +37,8 @@ public class PropertyService {
         return this.repository.save(property);
     }
 
+    public void deleteProperty(int propertyId) {
+        this.repository.deleteById(propertyId);
+    }
+
 }
