@@ -20,8 +20,8 @@ commit;
 
 start transaction;
 insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Boston', 'MA', '02120');
-insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Compton', 'CA', '97171');
-insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (1, 'Jacksonville', 'NC', '61221');
+insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (2, 'Compton', 'CA', '97171');
+insert into `PROPRENTAL`.`property_details` (`PROPERTY_ID`, `CITY`, `STATE`, `ZIPCODE`) values (3, 'Jacksonville', 'NC', '61221');
 commit;
 
 start transaction;
