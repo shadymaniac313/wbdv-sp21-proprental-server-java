@@ -89,7 +89,7 @@ public class PropertyController {
 
     private Set<Amenity> performAmenityUpdates(String amenityIds) {
         HashSet<Amenity> updatedAmenities = new HashSet<>();
-        for (String amenityId : amenityIds.split(" ")) {
+        for (String amenityId : amenityIds.split(",")) {
             if (this.amenityService.checkIfExists(Integer.parseInt(amenityId))) {
                 updatedAmenities
                   .add(this.amenityService.findAmenityById(Integer.parseInt(amenityId)));
