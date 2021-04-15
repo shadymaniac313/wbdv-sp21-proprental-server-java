@@ -20,6 +20,10 @@ public class UserService {
         return repository.findById(userId).get();
     }
 
+    public User fetchUserByUsername(String username) {
+        return repository.findUserByUserAuth_Username(username);
+    }
+
     public List<User> fetchAllUsers() {
         return (List<User>) repository.findAll();
     }
@@ -47,6 +51,14 @@ public class UserService {
         }
 
         return this.repository.save(buildUpdatedUser(toBeUpdated.get(), user));
+    }
+
+    public boolean checkIfExistsAndAuthenticate(String username, String password) {
+        User foundUser = this.fetchUserByUsername(username);
+        if(foundUser != null) {
+            return foundUser.getUserAuth().getPwd().equals(password);
+        }
+        return false;
     }
 
     public void deleteUser(int userId) {
