@@ -61,6 +61,9 @@ public class PropertyController {
           .setCity(propertyDTO.getCity())
           .setState(propertyDTO.getState())
           .setZipcode(propertyDTO.getZipcode())
+          .setBathCount(propertyDTO.getBathCount())
+          .setBedCount(propertyDTO.getBedCount())
+          .setAreaSqFt(propertyDTO.getAreaSqFt())
           .build();
         embeddedDetails.setProperty(propertyToBeAdded);
         propertyToBeAdded.setPropertyDetails(embeddedDetails);
@@ -79,6 +82,9 @@ public class PropertyController {
             existingProperty.getPropertyDetails().setCity(updatedProperty.getCity());
             existingProperty.getPropertyDetails().setState(updatedProperty.getState());
             existingProperty.getPropertyDetails().setZipcode(updatedProperty.getZipcode());
+            existingProperty.getPropertyDetails().setBathCount(updatedProperty.getBathCount());
+            existingProperty.getPropertyDetails().setBedCount(updatedProperty.getBedCount());
+            existingProperty.getPropertyDetails().setAreaSqFt(updatedProperty.getAreaSqFt());
             Set<Amenity> updatedAmenities = performAmenityUpdates(updatedProperty.getAmenityIds());
             existingProperty.setAmenities(updatedAmenities);
             this.service.addProperty(existingProperty);
