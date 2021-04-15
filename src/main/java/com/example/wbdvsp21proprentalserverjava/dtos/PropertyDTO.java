@@ -6,6 +6,9 @@ public class PropertyDTO {
     private String city;
     private String state;
     private String zipcode;
+    private int bathCount;
+    private int bedCount;
+    private double areaSqFt;
     private String amenityIds;
 
     public String getSource() {
@@ -48,12 +51,41 @@ public class PropertyDTO {
         this.amenityIds = amenityIds;
     }
 
+
+    public int getBathCount() {
+        return bathCount;
+    }
+
+    public void setBathCount(int bathCount) {
+        this.bathCount = bathCount;
+    }
+
+    public int getBedCount() {
+        return bedCount;
+    }
+
+    public void setBedCount(int bedCount) {
+        this.bedCount = bedCount;
+    }
+
+    public double getAreaSqFt() {
+        return areaSqFt;
+    }
+
+    public void setAreaSqFt(double areaSqFt) {
+        this.areaSqFt = areaSqFt;
+    }
+
+
     public PropertyDTO(String source, String city, String state, String zipcode,
-      String amenityIds) {
+      int bathCount, int bedCount, double areaSqFt, String amenityIds) {
         this.source = source;
         this.city = city;
         this.state = state;
         this.zipcode = zipcode;
+        this.bathCount = bathCount;
+        this.bedCount = bedCount;
+        this.areaSqFt = areaSqFt;
         this.amenityIds = amenityIds;
     }
 }

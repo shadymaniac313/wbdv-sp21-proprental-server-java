@@ -33,6 +33,11 @@ public class UserController {
         return this.service.fetchAllUsers();
     }
 
+    @GetMapping("/authenticate/{username}/{password}")
+    public boolean authenticate(@PathVariable String username, @PathVariable String password) {
+        return this.service.checkIfExistsAndAuthenticate(username, password);
+    }
+
     @PostMapping("/create")
     public User createUser(@RequestBody UserDTO userDTO) {
         User userToBeCreated = new User(userDTO.getFirstName(), userDTO.getLastName(),
