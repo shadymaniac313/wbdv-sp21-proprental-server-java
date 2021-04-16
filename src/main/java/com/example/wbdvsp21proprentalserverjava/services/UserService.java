@@ -53,12 +53,14 @@ public class UserService {
         return this.repository.save(buildUpdatedUser(toBeUpdated.get(), user));
     }
 
-    public boolean checkIfExistsAndAuthenticate(String username, String password) {
+    public User checkIfExistsAndAuthenticate(String username, String password) {
         User foundUser = this.fetchUserByUsername(username);
-        if(foundUser != null) {
-            return foundUser.getUserAuth().getPwd().equals(password);
+        if (foundUser != null) {
+            if (foundUser.getUserAuth().getPwd().equals(password)) {
+                return foundUser;
+            }
         }
-        return false;
+        return null;
     }
 
     public void deleteUser(int userId) {
