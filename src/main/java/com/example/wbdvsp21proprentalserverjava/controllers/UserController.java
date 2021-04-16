@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/authenticate/{username}/{password}")
-    public boolean authenticate(@PathVariable String username, @PathVariable String password) {
+    public User authenticate(@PathVariable String username, @PathVariable String password) {
         return this.service.checkIfExistsAndAuthenticate(username, password);
     }
 
