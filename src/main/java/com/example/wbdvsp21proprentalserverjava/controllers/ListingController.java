@@ -56,4 +56,9 @@ public class ListingController {
     public Listing findListingForId(@PathVariable int id){
         return service.fetchListingById(id);
     }
+
+    @GetMapping("/user/{userId}")
+    public List<Listing> findListingsForUser(@PathVariable int userId) {
+        return this.service.fetchListingsForUser(userId);
+    }
 }
