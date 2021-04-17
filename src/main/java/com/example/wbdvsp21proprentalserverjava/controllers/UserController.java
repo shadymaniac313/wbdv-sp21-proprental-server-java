@@ -1,8 +1,11 @@
 package com.example.wbdvsp21proprentalserverjava.controllers;
 
 import com.example.wbdvsp21proprentalserverjava.dtos.UserDTO;
+import com.example.wbdvsp21proprentalserverjava.dtos.UserListingDTO;
+import com.example.wbdvsp21proprentalserverjava.models.Listing;
 import com.example.wbdvsp21proprentalserverjava.models.User;
 import com.example.wbdvsp21proprentalserverjava.models.UserAuth;
+import com.example.wbdvsp21proprentalserverjava.services.ListingService;
 import com.example.wbdvsp21proprentalserverjava.services.UserService;
 import java.util.List;
 import org.slf4j.Logger;
@@ -24,18 +27,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    UserService service;
+    UserService userService;
+    @Autowired
+    ListingService listingService;
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping("/all")
     public List<User> findAllUsers() {
-        return this.service.fetchAllUsers();
+        return this.userService.fetchAllUsers();
     }
 
     @GetMapping("/authenticate/{username}/{password}")
     public int authenticate(@PathVariable String username, @PathVariable String password) {
-        if(service.checkIfExistsAndAuthenticate(username, password)){
-            return  service.fetchUserByUsername(username).getUserId();
+        if (userService.checkIfExistsAndAuthenticate(username, password)) {
+            return userService.fetchUserByUsername(username).getUserId();
         }
         return 0;
     }
@@ -47,20 +52,38 @@ public class UserController {
         UserAuth authToBeCreated = new UserAuth(userDTO.getUsername(), userDTO.getPwd());
         userToBeCreated.setUserAuth(authToBeCreated);
         authToBeCreated.setUser(userToBeCreated);
-        return this.service.createUser(userToBeCreated);
+        return this.userService.createUser(userToBeCreated);
+    }
+
+    @PostMapping("/like")
+    public User addListingForUser(@RequestBody UserListingDTO userListingDTO) {
+        User user = this.userService.fetchUserById(userListingDTO.getUserId());
+        Listing listing = this.listingService.fetchListingById(userListingDTO.getListingId());
+        user.getListings().add(listing);
+        listing.getUsers().add(user);
+        return this.userService.updateUser(user);
+    }
+
+    @PostMapping("/unlike")
+    public User removeListingForUser(@RequestBody UserListingDTO userListingDTO) {
+        User user = this.userService.fetchUserById(userListingDTO.getUserId());
+        Listing listing = this.listingService.fetchListingById(userListingDTO.getListingId());
+        user.getListings().remove(listing);
+        listing.getUsers().remove(user);
+        return this.userService.updateUser(user);
     }
 
     @PutMapping(value = "/update/{userId}")
     public User updateUser(@RequestBody UserDTO user, @PathVariable int userId) {
         logger.info("Attempting to update user details");
-        return this.service.updateUser(user, userId);
+        return this.userService.updateUser(user, userId);
     }
 
     @DeleteMapping("/{userId}")
     public int deleteUser(@PathVariable int userId) {
         try {
             logger.info("Attempting to delete user {}", userId);
-            this.service.deleteUser(userId);
+            this.userService.deleteUser(userId);
         } catch (Exception e) {
             logger.error("User {} being deleted does not exist", userId);
             return 0;
