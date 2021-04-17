@@ -16,14 +16,20 @@ public class ListingService {
     public Listing fetchListingById(int listingId){
         return repository.findById(listingId).get();
     }
+
     public List<Listing> fetchAllListings(){
         return (List<Listing>) repository.findAll();
     }
+
     public  Listing createListing(Listing listing) {
         return repository.save(listing);
     }
 
     public boolean checkIfExists(int listingId) {
         return this.repository.findById(listingId).isPresent();
+    }
+
+    public List<Listing> fetchListingsForUser(int userId) {
+        return repository.findListingsForUser(userId);
     }
 }
