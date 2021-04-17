@@ -29,6 +29,10 @@ public class PropertyService {
         return this.repository.findPropertiesByCity(city);
     }
 
+    public List<Property> fetchPropertiesByListing(String id) {
+        return this.repository.findPropertiesByListing(id);
+    }
+
     public List<Property> fetchPropertiesBySource(String source) {
         return this.repository.findPropertiesByPropertySource(source);
     }
