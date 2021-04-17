@@ -44,6 +44,10 @@ public class UserService {
         return user;
     }
 
+    public User updateUser(User user) {
+        return this.repository.save(user);
+    }
+
     public User updateUser(UserDTO user, int userId) {
         Optional<User> toBeUpdated = this.repository.findById(userId);
         if (!toBeUpdated.isPresent()) {

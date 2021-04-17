@@ -1,5 +1,7 @@
 package com.example.wbdvsp21proprentalserverjava.dtos;
 
+import com.example.wbdvsp21proprentalserverjava.models.User;
+
 public class UserDTO {
 
     private String firstName;
@@ -33,8 +35,6 @@ public class UserDTO {
         return pwd;
     }
 
-
-
     public UserDTO(String firstName, String lastName, String phone, int userType,
       String username, String pwd) {
         this.firstName = firstName;
@@ -44,4 +44,5 @@ public class UserDTO {
         this.username = username;
         this.pwd = pwd;
     }
+
 }
