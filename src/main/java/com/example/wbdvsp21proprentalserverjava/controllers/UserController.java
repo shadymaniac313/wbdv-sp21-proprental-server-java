@@ -33,8 +33,11 @@ public class UserController {
     }
 
     @GetMapping("/authenticate/{username}/{password}")
-    public User authenticate(@PathVariable String username, @PathVariable String password) {
-        return this.service.checkIfExistsAndAuthenticate(username, password);
+    public int authenticate(@PathVariable String username, @PathVariable String password) {
+        if(service.checkIfExistsAndAuthenticate(username, password)){
+            return  service.fetchUserByUsername(username).getUserId();
+        }
+        return 0;
     }
 
     @PostMapping("/create")

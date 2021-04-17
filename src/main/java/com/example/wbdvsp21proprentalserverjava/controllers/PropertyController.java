@@ -54,6 +54,11 @@ public class PropertyController {
         return this.service.fetchPropertiesBySource(source);
     }
 
+    @GetMapping("/{id}")
+    public Optional<Property> findPropertiesBySource(@PathVariable int id) {
+        return this.service.fetchPropertyById(id);
+    }
+
     @PostMapping("/create")
     public Property createProperty(@RequestBody PropertyDTO propertyDTO) {
         Property propertyToBeAdded = new Property(propertyDTO.getSource());
