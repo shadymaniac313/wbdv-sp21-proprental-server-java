@@ -39,7 +39,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User findUserById(@PathVariable int id) {
-        return this.service.fetchUserById(id);
+        return this.userService.fetchUserById(id);
     }
 
 
