@@ -61,4 +61,9 @@ public class ListingController {
     public List<Listing> findListingsForUser(@PathVariable int userId) {
         return this.service.fetchListingsForUser(userId);
     }
+
+    @GetMapping("/user/{userId}/listing/{listingId}")
+    public boolean checkIfUserLikesListing(@PathVariable int userId, @PathVariable int listingId) {
+        return this.service.checkIfUserLikesListing(userId, listingId);
+    }
 }
