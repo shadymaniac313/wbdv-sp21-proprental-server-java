@@ -32,4 +32,13 @@ public class ListingService {
     public List<Listing> fetchListingsForUser(int userId) {
         return repository.findListingsForUser(userId);
     }
+
+    public boolean checkIfUserLikesListing(int userId, int listingId) {
+         List<Listing> listingsLikedByUser = this.fetchListingsForUser(userId);
+         for (Listing listing: listingsLikedByUser) {
+             if (listing.getListingId() == listingId)
+                 return true;
+         }
+         return false;
+    }
 }

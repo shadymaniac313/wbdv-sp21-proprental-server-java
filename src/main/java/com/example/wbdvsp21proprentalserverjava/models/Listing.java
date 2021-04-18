@@ -10,6 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "listings")
 public class Listing {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
@@ -23,9 +24,9 @@ public class Listing {
 
     @ManyToMany
     @JoinTable(
-            name = "user_listing_lookup",
-            joinColumns = {@JoinColumn(name = "LISTING_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "USER_ID")}
+      name = "user_listing_lookup",
+      joinColumns = {@JoinColumn(name = "LISTING_ID")},
+      inverseJoinColumns = {@JoinColumn(name = "USER_ID")}
     )
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
@@ -94,12 +95,12 @@ public class Listing {
     @Override
     public String toString() {
         return "Listing{" +
-                "listingId=" + listingId +
-                ", propertyId=" + propertyId +
-                ", saleType='" + saleType + '\'' +
-                ", rate=" + rate +
-                ", agentId=" + agentId +
-                '}';
+          "listingId=" + listingId +
+          ", propertyId=" + propertyId +
+          ", saleType='" + saleType + '\'' +
+          ", rate=" + rate +
+          ", agentId=" + agentId +
+          '}';
     }
 
 }
