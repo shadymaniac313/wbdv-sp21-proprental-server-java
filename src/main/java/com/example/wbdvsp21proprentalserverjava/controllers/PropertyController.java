@@ -49,6 +49,11 @@ public class PropertyController {
         return this.service.fetchPropertiesByCity(city);
     }
 
+    @GetMapping("/listing/{id}")
+    public List<Property> findPropertiesByListing(@PathVariable String id) {
+        return this.service.fetchPropertiesByListing(id);
+    }
+
     @GetMapping("/source/{source}")
     public List<Property> findPropertiesBySource(@PathVariable String source) {
         return this.service.fetchPropertiesBySource(source);

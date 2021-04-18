@@ -37,6 +37,12 @@ public class UserController {
         return this.userService.fetchAllUsers();
     }
 
+    @GetMapping("/{id}")
+    public User findUserById(@PathVariable int id) {
+        return this.service.fetchUserById(id);
+    }
+
+
     @GetMapping("/authenticate/{username}/{password}")
     public int authenticate(@PathVariable String username, @PathVariable String password) {
         if (userService.checkIfExistsAndAuthenticate(username, password)) {

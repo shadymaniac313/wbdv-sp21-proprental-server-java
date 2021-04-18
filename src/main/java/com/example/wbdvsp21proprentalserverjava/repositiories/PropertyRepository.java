@@ -15,6 +15,9 @@ public interface PropertyRepository extends CrudRepository<Property, Integer> {
       + "pd.property_id where CITY = ?1", nativeQuery = true)
     List<Property> findPropertiesByCity(String city);
 
+    @Query(value = "select * from properties where properties.id = (select property_id from listings where listings.id = ?1)", nativeQuery = true)
+    List<Property> findPropertiesByListing(String id);
+
     List<Property> findPropertiesByPropertySource(String source);
 
 }
