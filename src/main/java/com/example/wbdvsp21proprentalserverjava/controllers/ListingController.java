@@ -10,6 +10,7 @@ import com.example.wbdvsp21proprentalserverjava.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -55,6 +56,11 @@ public class ListingController {
     @GetMapping("/{id}")
     public Listing findListingForId(@PathVariable int id){
         return service.fetchListingById(id);
+    }
+
+    @GetMapping("{id}/price")
+    public double findPriceByListingId(@PathVariable int id) {
+        return this.findListingForId(id).getRate();
     }
 
     @GetMapping("/user/{userId}")
